@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message OutputDescriptor {
+  repeated uint32 shape = 1;
+  bool earlyExit = 2;
+}

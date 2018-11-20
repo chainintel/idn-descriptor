@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message InputDescriptor {
+  repeated uint32 shape = 1;
+}

@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+message ServiceDescriptor {
+  string version = 1;
+  string serviceId = 2;
+  repeated StageDescriptor stages = 3;
+}

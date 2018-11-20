@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message PackageDescriptor {
+  string name = 1;
+  string version = 2;
+  string description = 3;
+  string author = 4;
+  string license = 5;
+  ModelDescriptor model = 6;
+  ServiceDescriptor service = 7;
+}
