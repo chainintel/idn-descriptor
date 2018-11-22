@@ -2,6 +2,7 @@ export class InputDescriptor {
   shape: Array<number>;
   static from(obj: any) {
     let d = new InputDescriptor();
+    d.shape = obj.shape;
     return d;
   }
   static copy(other) {
@@ -13,7 +14,7 @@ export class InputDescriptor {
   }
   json() {
     return {
-      shape: this.shape ? this.shape : undefined
+      shape: this.shape ? this.shape : []
     };
   }
 }

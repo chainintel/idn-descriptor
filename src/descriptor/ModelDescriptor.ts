@@ -27,9 +27,9 @@ export class ModelDescriptor {
     return m;
   }
   static copy(other) {
-    if(other){
+    if (other) {
       return ModelDescriptor.from(other.json());
-    }else{
+    } else {
       return new ModelDescriptor();
     }
   }
@@ -40,8 +40,8 @@ export class ModelDescriptor {
       types: this.types ? this.types : undefined,
       path: this.path ? this.path : undefined,
       id: this.id ? this.id : undefined,
-      inputs: this.inputs ? this.inputs.map((x) => x.json()) : undefined,
-      outputs: this.outputs ? this.outputs.map((x) => x.json()) : undefined,
+      inputs: this.inputs ? this.inputs.map((x) => x.json()) : [],
+      outputs: this.outputs ? this.outputs.map((x) => x.json()) : [],
       replication: this.replication ? this.replication : undefined,
       thresholds: this.thresholds ? this.thresholds : undefined,
       peers: this.peers ? this.peers : undefined

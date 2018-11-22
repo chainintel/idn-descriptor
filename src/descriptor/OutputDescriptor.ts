@@ -3,6 +3,8 @@ export class OutputDescriptor {
   earlyExit: boolean;
   static from(obj: any) {
     let d = new OutputDescriptor();
+    d.shape = obj.shape;
+    d.earlyExit = obj.earlyExit;
     return d;
   }
   static copy(other) {
@@ -14,7 +16,7 @@ export class OutputDescriptor {
   }
   json() {
     return {
-      shape: this.shape ? this.shape : undefined,
+      shape: this.shape ? this.shape : [],
       earlyExit: this.earlyExit ? this.earlyExit : undefined
     };
   }
