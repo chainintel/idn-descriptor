@@ -7,6 +7,7 @@ export class PackageDescriptor {
   description: string;
   author: string;
   license: string;
+  hash: string;
   model: ModelDescriptor;
   service: ServiceDescriptor;
   static from(obj: any) {
@@ -19,6 +20,7 @@ export class PackageDescriptor {
     m.description = obj.description;
     m.author = obj.author;
     m.license = obj.license;
+    m.hash = obj.hash;
     if(obj.model)
       m.model = ModelDescriptor.from(obj.model)!;
     if(obj.service)
@@ -39,6 +41,7 @@ export class PackageDescriptor {
       description: this.description ? this.description : undefined,
       author: this.author ? this.author : undefined,
       license: this.license ? this.license : undefined,
+      hash: this.hash ? this.hash : undefined,
       model: this.model ? this.model.json() : undefined,
       service: this.service ? this.service.json() : undefined
     };
