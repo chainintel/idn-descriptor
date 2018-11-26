@@ -2,5 +2,7 @@ syntax = "proto3";
 
 message OutputDescriptor {
   repeated uint32 shape = 1;
-  bool earlyExit = 2;
+  string type = 2;
+  repeated string classes = 3;
+  bool earlyExit = 4;
 }
