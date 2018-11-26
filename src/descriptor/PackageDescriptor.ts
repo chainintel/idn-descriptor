@@ -10,14 +10,19 @@ export class PackageDescriptor {
   model: ModelDescriptor;
   service: ServiceDescriptor;
   static from(obj: any) {
+    if(!obj){
+      return
+    }
     let m = new PackageDescriptor();
     m.name = obj.name;
     m.version = obj.version;
     m.description = obj.description;
     m.author = obj.author;
     m.license = obj.license;
-    m.model = ModelDescriptor.from(obj.model);
-    m.service = ServiceDescriptor.from(obj.service);
+    if(obj.model)
+      m.model = ModelDescriptor.from(obj.model)!;
+    if(obj.service)
+      m.service = ServiceDescriptor.from(obj.service)!;
     return m;
   }
   static copy(other) {

@@ -13,6 +13,9 @@ export class ModelDescriptor {
   thresholds: Array<number>;
   peers: Array<string> = [];
   static from(obj: any) {
+    if(!obj){
+      return
+    }
     let m = new ModelDescriptor();
     m.local = obj.local;
     m.version = obj.version;
@@ -22,8 +25,10 @@ export class ModelDescriptor {
     m.replication = obj.replication;
     m.thresholds = obj.thresholds;
     m.peers = obj.peers;
-    m.inputs = obj.inputs.map((x) => InputDescriptor.from(x));
-    m.outputs = obj.outputs.map((x) => OutputDescriptor.from(x));
+    if(obj.inputs)
+      m.inputs = obj.inputs.map((x) => InputDescriptor.from(x));
+    if(obj.outputs)
+      m.outputs = obj.outputs.map((x) => OutputDescriptor.from(x));
     return m;
   }
   static copy(other) {

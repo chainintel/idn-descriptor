@@ -2,6 +2,9 @@ export class OutputDescriptor {
   shape: Array<number>;
   earlyExit: boolean;
   static from(obj: any) {
+    if(!obj){
+      return
+    }
     let d = new OutputDescriptor();
     d.shape = obj.shape;
     d.earlyExit = obj.earlyExit;

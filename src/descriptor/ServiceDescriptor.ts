@@ -8,12 +8,16 @@ export class ServiceDescriptor {
   stages: Array<StageDescriptor>;
   constructor() {}
   static from(obj: any) {
+    if(!obj){
+      return
+    }
     let p = obj;
     let d = new ServiceDescriptor();
     d.version = p.version;
-    d.stages = p.stages.map((stage) => {
-      return StageDescriptor.from(stage);
-    });
+    if(p.stages)
+      d.stages = p.stages.map((stage) => {
+        return StageDescriptor.from(stage);
+      });
     return d;
   }
   static copy(other) {
@@ -91,10 +95,12 @@ export class ServiceDescriptor {
       model.replication = 1;
       for (let j = 0; j < replication; j++) {
         let nstage = StageDescriptor.copy(stage);
-        nstage.models = [model];
-        let nserivce = ServiceDescriptor.copy(this);
-        nserivce.stages[0] = stage;
-        services.push(nserivce);
+        if(nstage)
+          nstage.models = [model];
+        let nservice = ServiceDescriptor.copy(this);
+        if(nservice)
+        nservice.stages[0] = stage;
+          services.push(nservice!);
       }
     }
     return services;

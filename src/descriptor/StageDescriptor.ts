@@ -12,17 +12,23 @@ export class StageDescriptor {
   replication: number;
   peers: Array<string> = [];
   static from(obj: any) {
+    if(!obj){
+      return
+    }
     let s = new StageDescriptor();
-    s.inputs = obj.inputs.map((x) => InputDescriptor.from(x));
-    s.outputs = obj.outputs.map((x) => OutputDescriptor.from(x));
+    if(obj.inputs)
+      s.inputs = obj.inputs.map((x) => InputDescriptor.from(x));
+    if(obj.outputs)
+      s.outputs = obj.outputs.map((x) => OutputDescriptor.from(x));
     s.local = obj.local;
     s.aggregation = obj.aggregation;
     s.wait = obj.wait;
     s.replication = obj.replication;
     s.peers = obj.peers;
-    s.models = obj.models.map((m) => {
-      return ModelDescriptor.from(m);
-    });
+    if(obj.models)
+      s.models = obj.models.map((m) => {
+        return ModelDescriptor.from(m);
+      });
     return s;
   }
   static copy(other) {
