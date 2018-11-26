@@ -14,7 +14,7 @@ export class ModelDescriptor {
   peers: Array<string> = [];
   static from(obj: any) {
     if(!obj){
-      return
+      return new ModelDescriptor();
     }
     let m = new ModelDescriptor();
     m.local = obj.local;

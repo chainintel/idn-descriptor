@@ -13,7 +13,7 @@ export class StageDescriptor {
   peers: Array<string> = [];
   static from(obj: any) {
     if(!obj){
-      return
+      return new StageDescriptor();
     }
     let s = new StageDescriptor();
     if(obj.inputs)

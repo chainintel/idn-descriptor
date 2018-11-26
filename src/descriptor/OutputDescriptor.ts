@@ -3,7 +3,7 @@ export class OutputDescriptor {
   earlyExit: boolean;
   static from(obj: any) {
     if(!obj){
-      return
+      return new OutputDescriptor();
     }
     let d = new OutputDescriptor();
     d.shape = obj.shape;

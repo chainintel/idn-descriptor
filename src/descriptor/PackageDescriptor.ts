@@ -11,7 +11,7 @@ export class PackageDescriptor {
   service: ServiceDescriptor;
   static from(obj: any) {
     if(!obj){
-      return
+      return new PackageDescriptor();
     }
     let m = new PackageDescriptor();
     m.name = obj.name;

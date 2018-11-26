@@ -9,7 +9,7 @@ export class ServiceDescriptor {
   constructor() {}
   static from(obj: any) {
     if(!obj){
-      return
+      return new ServiceDescriptor();
     }
     let p = obj;
     let d = new ServiceDescriptor();
