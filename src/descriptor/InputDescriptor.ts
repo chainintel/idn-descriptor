@@ -2,7 +2,7 @@ export class InputDescriptor {
   shape: Array<number>;
   static from(obj: any) {
     if(!obj){
-      return
+      return new InputDescriptor();
     }
     let d = new InputDescriptor();
     d.shape = obj.shape;
