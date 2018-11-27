@@ -49,6 +49,7 @@ export class PackageDescriptor {
   }
   async calculateHash() {
     let pkg = this.json();
+    delete pkg.hash;
     if(pkg.service && pkg.service.stages){
       pkg.service.stages.forEach(stage => {
         // delete stage runtime option
