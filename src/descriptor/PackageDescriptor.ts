@@ -1,5 +1,6 @@
 import { ModelDescriptor } from './ModelDescriptor';
 import { ServiceDescriptor } from './ServiceDescriptor';
+const { DAGNode, DAGLink } = require('ipld-dag-pb');
 
 export class PackageDescriptor {
   name: string;
@@ -45,5 +46,29 @@ export class PackageDescriptor {
       model: this.model ? this.model.json() : undefined,
       service: this.service ? this.service.json() : undefined
     };
+  }
+  async calculateHash() {
+    let pkg = this.json();
+    if(pkg.service && pkg.service.stages){
+      pkg.service.stages.forEach(stage => {
+        // delete stage runtime option
+        delete stage.aggregationTimeout
+        delete stage.aggregationPeer
+        delete stage.local
+        delete stage.peers
+        delete stage.npeers
+        delete stage.exits
+      });
+    }
+    let buffer = new Buffer(JSON.stringify(this.json()));
+    return new Promise((resolve, reject) => {
+      DAGNode.create(buffer, (err, dagNode) => {
+        if (err) {
+          return reject(err);
+        }
+        const mh = dagNode.toJSON().multihash;
+        resolve(mh);
+      });
+    });
   }
 }
