@@ -1,10 +1,5 @@
 syntax = "proto3";
 
-message Exit {
-  string type = 1;
-  float threshold = 2;
-}
-
 message StageDescriptor {
   repeated PackageDescriptor models = 1;
   repeated InputDescriptor inputs = 2;

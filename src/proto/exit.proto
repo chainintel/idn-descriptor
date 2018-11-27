@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message Exit {
+  string type = 1;
+  float threshold = 2;
+}
