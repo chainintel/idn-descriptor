@@ -1,12 +1,22 @@
 syntax = "proto3";
 
+message Exit {
+  string type = 1;
+  float threshold = 2;
+}
+
 message StageDescriptor {
-  repeated ModelDescriptor models = 2;
-  repeated InputDescriptor inputs = 3;
-  repeated OutputDescriptor outputs = 4;
-  uint32 wait = 5;
-  string aggregation = 6;
-  bool local = 7;
-  uint32 replication = 8;
+  repeated PackageDescriptor models = 1;
+  repeated InputDescriptor inputs = 2;
+  repeated OutputDescriptor outputs = 3;
+  uint32 replication = 4;
+  string aggregation = 5;
+
+  // runtime fields, not used to calculate hash
+  uint32 aggregationTimeout = 6;
+  string aggregationPeer = 7;
+  bool local = 8;
   repeated string peers = 9;
+  uint32 npeers = 10;
+  map<string, Exit> exits = 11;
 }

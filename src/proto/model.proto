@@ -1,14 +1,16 @@
 syntax = "proto3";
 
 message ModelDescriptor {
-  string version = 1;
-  repeated string types = 2;
-  string path = 3;
-  string id = 4;
-  uint32 replication = 5;
-  repeated InputDescriptor inputs = 6;
-  repeated OutputDescriptor outputs = 7;
-  repeated float thresholds = 8;
-  bool local = 9;
-  repeated string peers = 10;
+  // string version = 1;
+  repeated string types = 1;
+  string path = 2;
+  // string id = 4;
+  repeated InputDescriptor inputs = 3;
+  repeated OutputDescriptor outputs = 4;
+
+  // runtime fields, not used to calculate hash
+  // repeated float thresholds = 5;
+  // bool local = 6;
+  // repeated string peers = 7;
+  // uint32 npeers = 8;
 }

@@ -2,7 +2,6 @@ export class OutputDescriptor {
   shape: Array<number>;
   type: string;
   classes: Array<string>;
-  earlyExit: boolean;
   static from(obj: any) {
     if(!obj){
       return new OutputDescriptor();
@@ -10,7 +9,6 @@ export class OutputDescriptor {
     let d = new OutputDescriptor();
     d.shape = obj.shape;
     d.type = obj.type;
-    d.earlyExit = obj.earlyExit;
     d.classes = obj.classes;
     return d;
   }
@@ -26,7 +24,6 @@ export class OutputDescriptor {
       shape: this.shape ? this.shape : [],
       type: this.type ? this.type : undefined,
       classes: this.classes ? this.classes : [],
-      earlyExit: this.earlyExit ? this.earlyExit : undefined
     };
   }
 }
