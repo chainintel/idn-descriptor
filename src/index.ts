@@ -5,6 +5,7 @@ const InputProto = require('./proto/input.proto');
 const OutputProto = require('./proto/output.proto');
 const PackageProto = require('./proto/package.proto');
 const ExitProto = require('./proto/exit.proto');
+const PeersProto = require('./proto/peers.proto');
 
 import { ServiceDescriptor } from './descriptor/ServiceDescriptor';
 import { StageDescriptor } from './descriptor/StageDescriptor';
@@ -23,6 +24,7 @@ export {
   OutputProto,
   PackageProto,
   ExitProto,
+  PeersProto,
   ServiceDescriptor,
   StageDescriptor,
   ModelDescriptor,

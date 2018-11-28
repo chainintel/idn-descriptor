@@ -1,6 +1,9 @@
 import { ModelDescriptor } from './ModelDescriptor';
 import { ServiceDescriptor } from './ServiceDescriptor';
-const { DAGNode, DAGLink } = require('ipld-dag-pb');
+import { resolve } from 'url';
+import { rejects } from 'assert';
+const multihashing = require('multihashing-async')
+const CID = require('cids');
 
 export class PackageDescriptor {
   name: string;
@@ -47,7 +50,7 @@ export class PackageDescriptor {
       service: this.service ? this.service.json() : undefined
     };
   }
-  async calculateHash() {
+  async calculateHash(): Promise<string> {
     let pkg = this.json();
     delete pkg.hash;
     if(pkg.service && pkg.service.stages){
@@ -61,15 +64,15 @@ export class PackageDescriptor {
         delete stage.exits
       });
     }
-    let buffer = new Buffer(JSON.stringify(this.json()));
-    return new Promise((resolve, reject) => {
-      DAGNode.create(buffer, (err, dagNode) => {
-        if (err) {
-          return reject(err);
+    let buffer = Buffer.from(JSON.stringify(pkg));
+
+    return new Promise<string>((resolve, reject)=>{
+      multihashing(buffer, 'sha2-256', (err, mh)=>{
+        if(err){
+          return rejects(err)
         }
-        const mh = dagNode.toJSON().multihash;
-        resolve(mh);
+        resolve(new CID(mh).toBaseEncodedString())
       });
-    });
+    })
   }
 }

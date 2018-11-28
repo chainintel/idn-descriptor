@@ -4,14 +4,21 @@ message StageDescriptor {
   repeated PackageDescriptor models = 1;
   repeated InputDescriptor inputs = 2;
   repeated OutputDescriptor outputs = 3;
-  uint32 replication = 4;
+  // uint32 replication = 4; // deprecated
   string aggregation = 5;
 
   // runtime fields, not used to calculate hash
   uint32 aggregationTimeout = 6;
-  string aggregationPeer = 7;
+  // string aggregationPeer = 7; // deprecated
   bool local = 8;
   repeated string peers = 9;
   uint32 npeers = 10;
-  map<string, Exit> exits = 11;
+
+  repeated string stagePeers = 11;
+  uint32 stageNpeers = 12;
+  string stageAggregation = 13;
+  string stageAggregationTimeout = 14;
+
+  map<string, Exit> modelExits = 15;
+  map<string, Peers> modelPeers = 16;
 }

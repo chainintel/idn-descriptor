@@ -1,6 +1,4 @@
 import { StageDescriptor } from './StageDescriptor';
-const CID = require('cids');
-const multihashing = require('multihashing');
 
 export class ServiceDescriptor {
   stages: Array<StageDescriptor>;

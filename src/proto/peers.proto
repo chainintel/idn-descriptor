@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message Peers{
+  repeated string peers = 1;
+}
