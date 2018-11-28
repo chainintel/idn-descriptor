@@ -77,7 +77,7 @@ export class StageDescriptor {
 
       aggregationTimeout: this.aggregationTimeout ? this.aggregationTimeout : undefined,
       // aggregationPeer: this.aggregationPeer ? this.aggregationPeer : undefined,
-      local: this.local ? this.local : undefined,
+      local: this.local || false,
       peers: this.peers ? this.peers : undefined,
       npeers: this.npeers ? this.npeers : undefined,
 
